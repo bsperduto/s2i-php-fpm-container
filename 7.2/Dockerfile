@@ -34,7 +34,7 @@ LABEL summary="${SUMMARY}" \
       io.openshift.tags="${NAME},${NAME}${PHP_VER_SHORT},rh-${NAME}${PHP_VER_SHORT}" \
       io.openshift.s2i.scripts-url="image:///usr/libexec/s2i" \
       io.s2i.scripts-url="image:///usr/libexec/s2i" \
-      name="bpserduto/${NAME}-${PHP_VER_SHORT}-fpm-centos7" \
+      name="bsperduto/${NAME}-${PHP_VER_SHORT}-fpm-centos7" \
       version="${PHP_VERSION}" 
 
 # Copy extra files to the image.
