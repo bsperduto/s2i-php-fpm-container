@@ -41,10 +41,11 @@ LABEL summary="${SUMMARY}" \
 COPY ./root/ /
 
 # Erase Apache Install PHP-FPM
-RUN yum shell /tmp/yumcmd.txt
+RUN yum shell /tmp/yumcmd.txt && \
+    rm /tmp/yumcmd.txt
 
 # Reset permissions of filesystem to default values
-RUN /usr/libexec/container-setup && rpm-file-permissions
+RUN rpm-file-permissions
 
 USER 1001
 
