@@ -45,7 +45,7 @@ RUN yum shell /tmp/yumcmd.txt && \
     rm /tmp/yumcmd.txt
 
 # Reset permissions of filesystem to default values
-RUN /usr/libexec/container-setup && rpm-file-permissions
+RUN rmdir /tmp/sessions && /usr/libexec/container-setup && rpm-file-permissions
 
 USER 1001
 
