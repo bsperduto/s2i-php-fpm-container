@@ -3,6 +3,8 @@ FROM centos/php-72-centos7
 # This image provides an PHP-FPM environment for running PHP
 # applications.
 
+USER root
+
 EXPOSE 9000
 
 # Description
