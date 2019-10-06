@@ -16,7 +16,7 @@ ENV PHP_VERSION=7.2 \
     PHP_VER_SHORT=72 \
     NAME=php \
     PATH=$PATH:/opt/rh/rh-php72/root/usr/sbin \
-	PHP_INI_SCAN_DIR=${APP_DATA}/php.d
+	PHP_INI_SCAN_DIR=${APP_DATA}/php.d \
 	SUMMARY="Platform for building and running PHP $PHP_VERSION applications" \
     DESCRIPTION="PHP $PHP_VERSION available as container is a base platform for \
 building and running various PHP $PHP_VERSION applications and frameworks. \
