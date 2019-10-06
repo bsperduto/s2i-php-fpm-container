@@ -45,7 +45,7 @@ RUN yum shell /tmp/yumcmd.txt && \
     rm /tmp/yumcmd.txt
 
 # Reset permissions of filesystem to default values
-RUN rpm-file-permissions && chmod +x $STI_SCRIPTS_PATH/run
+RUN rmdir /tmp/sessions && mv ${HTTPD_MAIN_CONF_D_PATH}/ssl.conf.rpmsave ${HTTPD_MAIN_CONF_D_PATH}/ssl.conf && mv  ${HTTPD_MAIN_CONF_D_PATH}/rh-php72-php.conf.rpmsave ${HTTPD_MAIN_CONF_D_PATH}/rh-php72-php.conf && /usr/libexec/container-setup && rpm-file-permissions
 
 USER 1001
 
