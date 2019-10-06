@@ -15,9 +15,9 @@ EXPOSE 9000
 ENV PHP_VERSION=7.2 \
     PHP_VER_SHORT=72 \
     NAME=php \
-    PATH=$PATH:/opt/rh/rh-php72/root/usr/sbin
-
-ENV SUMMARY="Platform for building and running PHP $PHP_VERSION applications" \
+    PATH=$PATH:/opt/rh/rh-php72/root/usr/sbin \
+	PHP_INI_SCAN_DIR=${PHP_SYSCONF_PATH}/php.d:${APP_DATA}/php.d \
+	SUMMARY="Platform for building and running PHP $PHP_VERSION applications" \
     DESCRIPTION="PHP $PHP_VERSION available as container is a base platform for \
 building and running various PHP $PHP_VERSION applications and frameworks. \
 PHP is an HTML-embedded scripting language. PHP attempts to make it easy for developers \
