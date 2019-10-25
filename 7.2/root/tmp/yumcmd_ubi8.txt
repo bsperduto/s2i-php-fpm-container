@@ -1,0 +1,6 @@
+config assumeyes yes
+erase php72 php72-php httpd24-mod_ssl
+install --setopt=tsflags=nodocs php72-php-fpm php72-php-cli
+run
+clean all
+quit
