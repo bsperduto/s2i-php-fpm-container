@@ -48,7 +48,7 @@ RUN yum shell /tmp/yumcmd_ubi8.txt && \
 	rm /tmp/yumcmd.txt
 
 # Reset permissions of filesystem to default values
-RUN rmdir /tmp/sessions && mv ${HTTPD_MAIN_CONF_D_PATH}/ssl.conf.rpmsave ${HTTPD_MAIN_CONF_D_PATH}/ssl.conf && touch /usr/libexec/httpd-ssl-gencerts && chmod +x /usr/libexec/httpd-ssl-gencerts && mkdir -p ${HTTPD_VAR_RUN} && /usr/libexec/container-setup && rpm-file-permissions && chmod +x $STI_SCRIPTS_PATH/run
+RUN rmdir /tmp/sessions && mv ${HTTPD_MAIN_CONF_D_PATH}/ssl.conf.rpmsave ${HTTPD_MAIN_CONF_D_PATH}/ssl.conf && mv ${HTTPD_MAIN_CONF_PATH}/httpd.conf.rpmsave ${HTTPD_MAIN_CONF_PATH}/httpd.conf && touch /usr/libexec/httpd-ssl-gencerts && chmod +x /usr/libexec/httpd-ssl-gencerts && mkdir -p ${HTTPD_VAR_RUN} && /usr/libexec/container-setup && rpm-file-permissions && chmod +x $STI_SCRIPTS_PATH/run
 
 USER 1001
 
