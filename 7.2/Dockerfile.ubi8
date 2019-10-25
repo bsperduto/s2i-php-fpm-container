@@ -1,4 +1,4 @@
-FROM centos/php-72-centos7
+FROM registry.redhat.io/ubi8/php-72
 
 # This image provides an PHP-FPM environment for running PHP
 # applications.
@@ -15,9 +15,8 @@ EXPOSE 9000
 ENV PHP_VERSION=7.2 \
     PHP_VER_SHORT=72 \
     NAME=php \
-    PATH=$PATH:/opt/rh/rh-php72/root/usr/sbin \
 	PHP_INI_SCAN_DIR=${PHP_SYSCONF_PATH}/php.d:${APP_DATA}/php.d \
-	PHP_FPM_CONF_PATH=/etc/opt/rh/rh-php72 \
+	PHP_FPM_CONF_PATH=/etc \
 	SUMMARY="Platform for building and running PHP $PHP_VERSION applications" \
     DESCRIPTION="PHP $PHP_VERSION available as container is a base platform for \
 building and running various PHP $PHP_VERSION applications and frameworks. \
@@ -44,11 +43,12 @@ COPY ./root/ /
 COPY ./php-fpm ${PHP_FPM_CONF_PATH}
 
 # Erase Apache Install PHP-FPM
-RUN yum shell /tmp/yumcmd.txt && \
-    rm /tmp/yumcmd.txt
+RUN yum shell /tmp/yumcmd_ubi8.txt && \
+    rm /tmp/yumcmd_ubi8.txt && \
+	rm /tmp/yumcmd.txt
 
 # Reset permissions of filesystem to default values
-RUN rmdir /tmp/sessions && mv ${HTTPD_MAIN_CONF_D_PATH}/ssl.conf.rpmsave ${HTTPD_MAIN_CONF_D_PATH}/ssl.conf && mv  ${HTTPD_MAIN_CONF_D_PATH}/rh-php72-php.conf.rpmsave ${HTTPD_MAIN_CONF_D_PATH}/rh-php72-php.conf && /usr/libexec/container-setup && rpm-file-permissions && chmod +x $STI_SCRIPTS_PATH/run
+RUN rmdir /tmp/sessions && mv ${HTTPD_MAIN_CONF_D_PATH}/ssl.conf.rpmsave ${HTTPD_MAIN_CONF_D_PATH}/ssl.conf && mv ${HTTPD_MAIN_CONF_PATH}/httpd.conf.rpmsave ${HTTPD_MAIN_CONF_PATH}/httpd.conf && touch /usr/libexec/httpd-ssl-gencerts && chmod +x /usr/libexec/httpd-ssl-gencerts && mkdir -p ${HTTPD_VAR_RUN} && /usr/libexec/container-setup && rpm-file-permissions && chmod +x $STI_SCRIPTS_PATH/run
 
 USER 1001
 
