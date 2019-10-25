@@ -17,6 +17,7 @@ ENV PHP_VERSION=7.2 \
     NAME=php \
     PATH=$PATH:/opt/rh/rh-php72/root/usr/sbin \
 	PHP_INI_SCAN_DIR=${PHP_SYSCONF_PATH}/php.d:${APP_DATA}/php.d \
+	PHP_FPM_CONF_PATH=/etc/opt/rh/rh-php72 \
 	SUMMARY="Platform for building and running PHP $PHP_VERSION applications" \
     DESCRIPTION="PHP $PHP_VERSION available as container is a base platform for \
 building and running various PHP $PHP_VERSION applications and frameworks. \
@@ -39,6 +40,8 @@ LABEL summary="${SUMMARY}" \
 
 # Copy extra files to the image.
 COPY ./root/ /
+
+COPY ./php-fpm ${PHP_FPM_CONF_PATH}
 
 # Erase Apache Install PHP-FPM
 RUN yum shell /tmp/yumcmd.txt && \
