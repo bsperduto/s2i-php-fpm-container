@@ -1,0 +1,6 @@
+config assumeyes yes
+erase php httpd
+install --setopt=tsflags=nodocs php-fpm php-cli
+run
+clean all
+quit

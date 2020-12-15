@@ -48,3 +48,13 @@ stages:
         tags: |
           $(tag)
           $(Build.SourceBranchName)
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: buildAndPush
+        containerRegistry: 'Github'
+        repository: 'bsperduto/s2i-php-fpm-container/php-73-fpm-ubi8'
+        dockerfile: '$(Build.SourcesDirectory)/7.3/Dockerfile.ubi8'
+        tags: |
+          $(tag)
+          $(Build.SourceBranchName)
