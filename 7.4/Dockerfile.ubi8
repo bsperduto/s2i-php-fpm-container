@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/php-73:1-103
+FROM registry.access.redhat.com/ubi8/php-74:1-35
 
 # This image provides an PHP-FPM environment for running PHP
 # applications.
@@ -8,12 +8,12 @@ USER root
 EXPOSE 9000
 
 # Description
-# This image provides an PHP 7.2 environment for running PHP applications.
+# This image provides an PHP 7.4 environment for running PHP applications.
 # Exposed ports:
 # * 9000 - FastCGI Port
 
-ENV PHP_VERSION=7.2 \
-    PHP_VER_SHORT=72 \
+ENV PHP_VERSION=7.4 \
+    PHP_VER_SHORT=74 \
     NAME=php \
 	PHP_INI_SCAN_DIR=${PHP_SYSCONF_PATH}/php.d:${APP_DATA}/php.d \
 	PHP_FPM_CONF_PATH=/etc \
@@ -34,7 +34,7 @@ LABEL summary="${SUMMARY}" \
       io.openshift.tags="${NAME},${NAME}${PHP_VER_SHORT},rh-${NAME}${PHP_VER_SHORT}" \
       io.openshift.s2i.scripts-url="image:///usr/libexec/s2i" \
       io.s2i.scripts-url="image:///usr/libexec/s2i" \
-      name="bsperduto/${NAME}-${PHP_VER_SHORT}-fpm-centos7" \
+      name="bsperduto/${NAME}-${PHP_VER_SHORT}-fpm-ubi8" \
       version="${PHP_VERSION}" 
 
 # Copy extra files to the image.

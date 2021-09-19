@@ -9,3 +9,7 @@ updates:
     directory: "/7.3" # Location of package manifests
     schedule:
       interval: "daily"
+  - package-ecosystem: "docker" # See documentation for possible values
+    directory: "/7.4" # Location of package manifests
+    schedule:
+      interval: "daily"
