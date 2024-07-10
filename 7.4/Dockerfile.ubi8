@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/php-74:1-87
+FROM registry.access.redhat.com/ubi8/php-74:1-125
 
 # This image provides an PHP-FPM environment for running PHP
 # applications.
